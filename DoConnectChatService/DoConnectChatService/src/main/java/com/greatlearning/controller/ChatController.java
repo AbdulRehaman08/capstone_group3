@@ -13,15 +13,27 @@ import java.util.List;
 public class ChatController {
     @Autowired
     private ChatService chatService;
-
+    
     @PostMapping("/post")
     public Chat sendMsg(@RequestBody Chat chat){
         return chatService.send(chat);
 
     }
 
+    @PostMapping("/post1")
+    public Chat sendMsg1(@RequestBody Chat chat){
+        return chatService.send1(chat);
+
+    }
+
     @GetMapping("/get")
     public List<Chat> get(){
         return chatService.get();
+    }
+    
+    @GetMapping("/get1/{qid}")
+    public List<Chat> get1(@PathVariable("qid") int qid){
+    	System.out.println(qid);
+        return chatService.get1(qid);
     }
 }
